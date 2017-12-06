@@ -33,19 +33,29 @@ print(round((time.time()-start)/3600))
 
 #creating AVG table
 avg={}
-for row in result :
-	avg[row.index] = result[row.index] / count[row.index]
+for row in result.keys() :
+	avg[row] = result[row] / count[row]
+
+df_count = pd.DataFrame(count, index=["count"]).tranpose()
+
 
 #####################################################
 #converted it as DataFrame in Pandas
-df=pd.DataFrame(avg, index=header[2:]).transpose()
 #save as csv format
-df.to_csv('avg_of_user_logs.csv')
 
+df_count = pd.DataFrame(count, index=["count").transpose()
+df_count.to_csv('count_of_user_logs.csv')
 
+df_avg=pd.DataFrame(avg, index=header[2:]).transpose()
+df_avg.to_csv('avg_of_user_logs.csv')
 
-##########TO READ CSV FILE
+df_result=pd.DataFrame(result, index=header[2:]).transpose()
+df_result.to_csv('sums_of_user_logs.csv')
+
+##########TO READ CSV FILE ################################
 import numpy as np
 import pandas as pd
 
-df=pd.read_csv('sums_of_user_logs.csv',  index_col=0)
+sum_df_csv=pd.read_csv('sums_of_user_logs.csv',  index_col=0)
+avg_df_csv=pd.read_csv('avg_of_user_logs.csv',  index_col=0)
+count_df_csv=pd.read_csv('count_of_user_logs.csv',  index_col=0)
